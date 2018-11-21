@@ -26,25 +26,25 @@ public:
 	template<typename T>
 	void init_memory();
 
-	void writeToMemory(const char * file_path);
+	void writeToMemory(const char * file_path);	//write file contents to shared-memory
 	
 
 	template<typename T>
-	T * find() const
+	T * find() const				//get shared-memory address
 	{
 		return (T *)managed_shd_.get_address();
 	};
 private:
-	char * managed_name_;
-	char * address_;
-	size_t size_;
-	char * mem_buffer_;
-	boost::interprocess::managed_shared_memory managed_shd_;
+	char * managed_name_;		//shared-memory name
+	char * address_;		//shared-memory address
+	size_t size_;			//shared-memory size
+	char * mem_buffer_;		//buffer used to save temperaty data
+	boost::interprocess::managed_shared_memory managed_shd_;	//boost managed_shared_memory
 
 
 };
 template<typename T>
-inline void client::init_memory()
+inline void client::init_memory()	//initialize shared-memory, set all to zero
 {
 	address_ = this->find<T>();
 	memset(address_, 0, size_);
