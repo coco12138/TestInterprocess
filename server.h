@@ -39,7 +39,7 @@ public:
 
 private:
 	char * shared_name_;		//shared-memory name
-	char * find_name_;		//
+	char * find_name_;		//source file name
 	size_t size_;			//shared-memory size
 	long offset_;			//file stream offset 
 
